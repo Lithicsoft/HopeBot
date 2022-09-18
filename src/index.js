@@ -3,14 +3,14 @@ const client = new Discord.Client();
 
 const config = {
     prefix: "-",
-    token: "" }
+    token: " " }
 
 client.on("ready", () => {
-    console.log("Đập Đá Thôi Nào!") })
+    console.log(`Bạn đã khởi chạy: ${client.user.tag} thành công!`); });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
 
-client.user.setPresence({ activity: { name: 'Đập Đá' }, status: 'dnd' }) 
+client.user.setPresence({ activity: { name: 'Chạy Thử Nghiệm' }, status: 'dnd' }) 
 
     if(message.author.bot) return;
     if(!message.content.startsWith(config.prefix)) return;
@@ -20,7 +20,7 @@ client.user.setPresence({ activity: { name: 'Đập Đá' }, status: 'dnd' })
     
     switch(command){
 
-// --- Một Số Trả Về Random Theo Điều Kiện Được Thiết Lập Trước [001] 
+// --- Một Số Trả Về Random Theo Điều Kiện [001] 
 
 case "hello":      
     var hello = Math.floor(Math.random() * 4);
@@ -39,7 +39,7 @@ case "hello":
 case "sad":      
     var sad = Math.floor(Math.random() * 4);
     if      (sad === 0) {
-          message.channel.send("sad [001]"); }
+          message.channel.send("sad [001"); }
     else if (sad === 1) {
           message.channel.send("sad [002]"); }
     else if (sad === 2) {
@@ -110,16 +110,70 @@ case "random":
 
 case "say":
          message.channel.send(args.join(" "));
+    break;   default:
+         message.channel.send("Tôi không thể hiểu bạn nói gì <:A_lasao:826683507509821490>"); 
     break;
-    default:
-         message.channel.send("Tôi không thể hiểu bạn nói gì <:A_lasao:826683507509821490>");
-    break;
+   
     
-  // Phiên Dịch Ngôn Ngữ []
+// --- Dẫn Link Website của Trường [007] -- đang trong giai đoạn thử nghiệm
 
-  // Chơi Nhạc []
+const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
 
-  // Tạo Give-Away []
+await lib.discord.channels['@0.3.0'].messages.create({
+  "channel_id": `${context.params.event.channel_id}`,
+  "content": "",
+  "tts": false,
+  "components": [
+    {
+      "type": 1,
+      "components": [
+        {
+          "style": 5,
+          "label": `Trang web`,
+          "url": `https://www.kgc.edu.vn/`,
+          "disabled": false,
+          "emoji": {
+            "id": null,
+            "name": `🌏`
+          },
+          "type": 2
+        },
+        {
+          "style": 5,
+          "label": `Sinh Viên`,
+          "url": `http://daotao.kgc.edu.vn/sinhvien`,
+          "disabled": false,
+          "emoji": {
+            "id": null,
+            "name": `🌏`
+          },
+          "type": 2
+        }
+      ]
+    }
+  ],
+  "embeds": [
+    {
+      "type": "rich",
+      "title": `Tuyển sinh`,
+      "description": `Trường Cao Đẳng Kiên Giang`,
+      "color": 0x0015ff,
+      "image": {
+        "url": `https://www.kgc.edu.vn/images/logomain.png`,
+        "height": 0,
+        "width": 0
+      },
+      "thumbnail": {
+        "url": `https://www.kgc.edu.vn/images/logomain.png`,
+        "height": 0,
+        "width": 0
+      },
+      "url": `https://www.kgc.edu.vn/`
+    }
+  ]
+});
+
+
 
   }
 
