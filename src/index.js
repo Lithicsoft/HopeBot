@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 const config = {
     prefix: "-",
-    token: "Nzk4ODk4NzAxMjkxNDg3MjYz.Gj1xkE.hI-8dts6pWkAQHSm-tIOjrSwvQxCgt_R28HkKE" }
+    token: "token" }
 
 client.on("ready", () => {
     console.log("Đập Đá Thôi Nào!") })
